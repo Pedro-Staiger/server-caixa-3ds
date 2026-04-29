@@ -29,15 +29,11 @@ const server = http.createServer(app);
 // Criar porção
 app.post("/server/criarPorcao", async (req, res) => {
     try {
-        let { nome, preco, descricao } = req.body;
-
-        if (descricao === "") {
-            descricao = "Sem descrição";
-        }
+        const { nome, descricao, preco } = req.body;
 
         const { data, error } = await supabase
             .from('porcao')
-            .insert({ nome: nome, preco: preco, descricao: descricao })
+            .insert({ nome: nome, descricao: descricao, preco: preco })
             .select()
             .single();
 
