@@ -53,11 +53,11 @@ app.post("/server/criarPorcao", async (req, res) => {
 // Criar adicional
 app.post("/server/criarAdicional", async (req, res) => {
     try {
-        const { nome, preco } = req.body;
+        const { nome, descricao, preco } = req.body;
 
         const { data, error } = await supabase
             .from('adicional')
-            .insert({ nome: nome, preco: preco })
+            .insert({ nome: nome, descricao: descricao, preco: preco })
             .select()
             .single();
 
